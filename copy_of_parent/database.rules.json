@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "programs": {
+      "$program_id": {
+        ".read": "auth.uid != null && ( root.child('users').child(auth.uid).child('permission').val() === 'admin' || root.child('users').child(auth.id).child('programId').val() == $program_id)",
+        ".write": "auth.uid != null && ( root.child('users').child(auth.uid).child('permission').val() === 'admin' || root.child('users').child(auth.id).child('programId').val() == $program_id)"
+      }
+    },
+    "users": {
+      "$user_id": {
+        ".read": "auth.uid != null",
+        ".write": "$user_id === auth.uid || root.child('users').child($user_id).val() === 'admin'"
+      }
+    }
+  }
+}
